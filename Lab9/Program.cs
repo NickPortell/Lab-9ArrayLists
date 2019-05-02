@@ -29,7 +29,9 @@ namespace Lab8
 
             int student;
             string firstChoice, secondChoice,name,place,food,color;
-            bool repeat = true;
+            bool repeat = true, cont = true;
+            List<string> students = Students(), hometown = HomeTown(), favfood = FavFood(), favcolor = FavColor();
+
 
             while (repeat == true)
             {
@@ -53,16 +55,16 @@ namespace Lab8
                     Console.Write("What is their Favorite Color: ");
                     color = GetColor();
 
-                    Console.WriteLine("Is this the correct information? ");
-                    Console.WriteLine($"Student Name: {name}\nHomeTown: {place}\nFavoriteFood: {food}\nFavorite Color: {color}");
+                    Console.WriteLine("Is this the correct information? (y/n): ");
+                    Console.WriteLine($"Student Name: {name}\nHomeTown: {place}\nFavorite Food: {food}\nFavorite Color: {color}");
                     string isCorrect = Console.ReadLine();
 
                     if(isCorrect.ToLower() == "y")
                     {
-                        Students().Add(name);
-                        HomeTown().Add(place);
-                        FavFood().Add(food);
-                        FavColor().Add(color);
+                        AddtoList(students, name);
+                        AddtoList(hometown, place);
+                        AddtoList(favfood, food);
+                        AddtoList(favcolor, color);
                     }
                     else
                     {
@@ -76,43 +78,148 @@ namespace Lab8
                 {
                     Console.Write("Which student would you like to learn more about");
 
-                    student = CheckStudent();
+                    student = CheckStudent(students);
 
 
-                    Console.WriteLine($"Student {student} is {Students()[student - 1]}");
+                    Console.WriteLine($"Student {student} is {students[student - 1]}");
 
 
-                    Console.WriteLine($"What would you like to know about {Students()[student - 1]}?");
+                    Console.WriteLine($"What would you like to know about {students[student - 1]}?");
                     firstChoice = Console.ReadLine();
 
-                    if (firstChoice.ToLower() != "hometown" && firstChoice.ToLower() != "favorite food")
+                    if (firstChoice.ToLower() != "hometown" && firstChoice.ToLower() != "favorite food" && firstChoice.ToLower() != "favorite color" )
                     {
 
                         firstChoice = CheckFirstChoice();
 
                     }
 
-                    if (firstChoice.ToLower() == "hometown")
+                    while(cont == true)
                     {
-                        Console.Write($"{Students()[student - 1]} is from {HomeTown()[student - 1]}.");
-                        Console.WriteLine(" \nWould you like to know more? (enter \"yes\" or \"no\")");
-                        secondChoice = Console.ReadLine();
-
-                        if (secondChoice.ToLower() == "yes")
+                        if (firstChoice.ToLower() == "hometown")
                         {
-                            Console.WriteLine($"{Students()[student - 1]}'s favorite food is {FavFood()[student - 1]}.");
-                        }
-                    }
-                    else if (firstChoice.ToLower() == "favorite food")
-                    {
-                        Console.Write($"{Students()[student - 1]}'s favorite food is {FavFood()[student - 1]}.");
-                        Console.WriteLine(" \nWould you like to know more? (enter \"yes\" or \"no\")");
-                        secondChoice = Console.ReadLine();
+                            Console.Write($"{students[student - 1]} is from {hometown[student - 1]}.");
+                            Console.WriteLine(" \nWould you like to know more? (enter \"yes\" or \"no\")");
+                            secondChoice = Console.ReadLine();
 
-                        if (secondChoice.ToLower() == "yes")
-                        {
-                            Console.WriteLine($"{Students()[student - 1]} is from {HomeTown()[student - 1]}.");
+                            if (secondChoice.ToLower() != "yes")
+                            {
+                                cont = false;
+                            }
+                            else
+                            {
+                                firstChoice = ChoseHomeTown();
+
+                                if (firstChoice.ToLower() == "favorite food")
+                                {
+                                    Console.Write($"{students[student - 1]}'s favorite food is {favfood[student - 1]}.");
+                                    Console.WriteLine(" \nWould you like to know more? (enter \"yes\" or \"no\")");
+                                    secondChoice = Console.ReadLine();
+
+                                    if (secondChoice.ToLower() == "yes")
+                                    {
+                                        Console.WriteLine($"{students[student - 1]}'s favorite color is {favcolor[student - 1]}.");
+                                        cont = false;
+                                    }
+                                }
+                                else if (firstChoice.ToLower() == "favorite color")
+                                {
+                                    Console.Write($"{students[student - 1]}'s favorite color is {favcolor[student - 1]}.");
+                                    Console.WriteLine(" \nWould you like to know more? (enter \"yes\" or \"no\")");
+                                    secondChoice = Console.ReadLine();
+
+                                    if (secondChoice.ToLower() == "yes")
+                                    {
+                                        Console.WriteLine($"{students[student - 1]}'s favorite food is {favfood[student - 1]}.");
+                                        cont = false;
+                                    }
+                                }
+                            }
+
                         }
+                        else if (firstChoice.ToLower() == "favorite food")
+                        {
+                            Console.Write($"{students[student - 1]}'s favorite food is {favfood[student - 1]}.");
+                            Console.WriteLine(" \nWould you like to know more? (enter \"yes\" or \"no\")");
+                            secondChoice = Console.ReadLine();
+
+                            if (secondChoice.ToLower() != "yes")
+                            {
+                                cont = false;
+                            }
+                            else
+                            {
+                                firstChoice = ChoseFavoriteFood();
+
+                                if (firstChoice.ToLower() == "hometown")
+                                {
+                                    Console.Write($"{students[student - 1]} is from {hometown[student - 1]}.");
+                                    Console.WriteLine(" \nWould you like to know more? (enter \"yes\" or \"no\")");
+                                    secondChoice = Console.ReadLine();
+
+                                    if (secondChoice.ToLower() == "yes")
+                                    {
+                                        Console.WriteLine($"{students[student - 1]}'s favorite color is {favcolor[student - 1]}.");
+                                        cont = false;
+                                    }
+                                }
+                                else if (firstChoice.ToLower() == "favorite color")
+                                {
+                                    Console.Write($"{students[student - 1]}'s favorite color is {favcolor[student - 1]}.");
+                                    Console.WriteLine(" \nWould you like to know more? (enter \"yes\" or \"no\")");
+                                    secondChoice = Console.ReadLine();
+
+                                    if (secondChoice.ToLower() == "yes")
+                                    {
+                                        Console.WriteLine($"{students[student - 1]} is from {hometown[student - 1]}.");
+                                        cont = false;
+                                    }
+                                }
+                            }
+                        }
+                        else if (firstChoice.ToLower() == "favorite color")
+                        {
+
+                            Console.Write($"{students[student - 1]}'s favorite color is {favcolor[student - 1]}.");
+                            Console.WriteLine(" \nWould you like to know more? (enter \"yes\" or \"no\")");
+                            secondChoice = Console.ReadLine();
+
+                            if (secondChoice.ToLower() != "yes")
+                            {
+                                cont = false;
+                            }
+                            else
+                            {
+                                firstChoice = ChoseFavoriteColor();
+
+                                if (firstChoice.ToLower() == "hometown")
+                                {
+                                    Console.Write($"{students[student - 1]} is from {hometown[student - 1]}.");
+                                    Console.WriteLine(" \nWould you like to know more? (enter \"yes\" or \"no\")");
+                                    secondChoice = Console.ReadLine();
+
+                                    if (secondChoice.ToLower() == "yes")
+                                    {
+                                        Console.WriteLine($"{students[student - 1]}'s favorite food is {favfood[student - 1]}.");
+                                        cont = false;
+                                    }
+                                }
+                                else if(firstChoice.ToLower() == "favorite food")
+                                {
+                                    Console.Write($"{students[student - 1]}'s favorite food is {favfood[student - 1]}.");
+                                    Console.WriteLine(" \nWould you like to know more? (enter \"yes\" or \"no\")");
+                                    secondChoice = Console.ReadLine();
+
+                                    if (secondChoice.ToLower() == "yes")
+                                    {
+                                        Console.WriteLine($"{students[student - 1]} is from {hometown[student - 1]}.");
+                                        cont = false;
+                                    }
+                                }
+                            }
+
+                        }
+                        //Outer edge of While loop (below)
                     }
                 }
                 else
@@ -143,21 +250,21 @@ namespace Lab8
 
         //Method Space
 
-        public static int CheckStudent()
+        public static int CheckStudent(List<string> students)
         {
-            Console.WriteLine("\n(enter a number 1-20): ");
+            Console.WriteLine($"\n(enter a number 1-{students.Count}): ");
             int student;
             bool isNum = int.TryParse(Console.ReadLine(), out student);
 
-            if (student < 1 || student > 20)
+            if (student < 1 || student > students.Count)
             {
                 Console.WriteLine("That student does not exist. Please try again.");
-                return CheckStudent();
+                return CheckStudent(students);
             }
             else if (!isNum)
             {
                 Console.WriteLine("That student does not exist. Please try again.");
-                return CheckStudent();
+                return CheckStudent(students);
             }
             return student;
 
@@ -165,20 +272,85 @@ namespace Lab8
 
         public static string CheckFirstChoice()
         {
-            Console.WriteLine($"Please try again. \n(enter \"hometown\" or \"favorite food\")");
-            string choice = Console.ReadLine();
+            Console.WriteLine($"Please try again. \n(enter \"hometown\" or \"favorite food\" or \"favorite color\")");
+            string choice = Console.ReadLine().ToLower();
+            
 
-            if (choice.ToLower() != "hometown" && choice.ToLower() != "favorite food")
+            if (choice != "hometown" && choice != "favorite food" && choice != "favorite color")
             {
                 return CheckFirstChoice();
             }
-            else if (choice.ToLower() == "hometown")
+            else if (choice == "hometown")
             {
                 return "hometown";
             }
-            else
+            else if (choice == "favorite food")
             {
                 return "favorite food";
+            }
+            else
+            {
+                return "favorite color";
+            }
+        }
+
+        public static string ChoseHomeTown()
+        {
+            Console.WriteLine($"\n(enter \"favorite color\" or \"favorite food\")");
+            string choice = Console.ReadLine().ToLower();
+
+            switch (choice)
+            {
+                case "favorite color":
+                    {
+                        return "favorite color";
+                    }
+                case "favorite food":
+                    {
+                        return "favorite food";
+                    }
+                default:
+                    return "(Please try again) " + ChoseFavoriteColor();
+            }
+        }
+
+        public static string ChoseFavoriteFood()
+        {
+            Console.WriteLine($"\n(enter \"hometown\" or \"favorite color\")");
+            string choice = Console.ReadLine().ToLower();
+
+            switch (choice)
+            {
+                case "hometown":
+                    {
+                        return "hometown";
+                    }
+                case "favorite color":
+                    {
+                        return "favorite color";
+                    }
+                default:
+                    return "(Please try again) " + ChoseFavoriteColor();
+            }
+        }
+
+        public static string ChoseFavoriteColor()
+        {
+            Console.WriteLine($"\n(enter \"hometown\" or \"favorite food\")");
+            string choice = Console.ReadLine().ToLower();
+
+            switch (choice)
+            {
+                case "hometown":
+                    {
+                        return "hometown";
+                    }
+                case "favorite food":
+                    {
+                        return "favorite food";
+                    }
+                default:
+                    return "(Please try again) " + ChoseFavoriteColor();
             }
         }
 
@@ -220,12 +392,13 @@ namespace Lab8
             return favColor;
         }
 
-        public static List<string> AddtoList(List<string> List, string info)
+        public static void AddtoList(List<string> List, string info)
         {
             List.Add(info);
 
-            return List;
+            //return List;
         }
+
         public static string GetName()
         {
             string userInput;

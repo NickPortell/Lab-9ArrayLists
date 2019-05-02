@@ -5,3 +5,10 @@ C:\GrandCircus\Documents\Lab exercises\Lab9\Lab9\obj\Debug\Lab9.csprojAssemblyRe
 C:\GrandCircus\Documents\Lab exercises\Lab9\Lab9\obj\Debug\Lab9.csproj.CoreCompileInputs.cache
 C:\GrandCircus\Documents\Lab exercises\Lab9\Lab9\obj\Debug\Lab9.exe
 C:\GrandCircus\Documents\Lab exercises\Lab9\Lab9\obj\Debug\Lab9.pdb
+C:\GrandCircus\Documents\Lab exercises\Lab-9ArrayLists\Lab9\bin\Debug\Lab9.exe.config
+C:\GrandCircus\Documents\Lab exercises\Lab-9ArrayLists\Lab9\bin\Debug\Lab9.exe
+C:\GrandCircus\Documents\Lab exercises\Lab-9ArrayLists\Lab9\bin\Debug\Lab9.pdb
+C:\GrandCircus\Documents\Lab exercises\Lab-9ArrayLists\Lab9\obj\Debug\Lab9.csprojAssemblyReference.cache
+C:\GrandCircus\Documents\Lab exercises\Lab-9ArrayLists\Lab9\obj\Debug\Lab9.csproj.CoreCompileInputs.cache
+C:\GrandCircus\Documents\Lab exercises\Lab-9ArrayLists\Lab9\obj\Debug\Lab9.exe
+C:\GrandCircus\Documents\Lab exercises\Lab-9ArrayLists\Lab9\obj\Debug\Lab9.pdb
